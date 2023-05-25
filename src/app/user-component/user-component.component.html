@@ -2,16 +2,66 @@
   <label>
     Username:&nbsp;
     <input type="text" formControlName="username" />
+    <div
+      *ngIf="
+        userForm.controls['username'].errors &&
+        !userForm.controls['username'].pristine
+      "
+      class="error-msg"
+    >
+      <div [hidden]="!userForm.controls['username'].errors['required']">
+        username is required.
+      </div>
+      <div [hidden]="!userForm.controls['username'].invalid">
+        username is invalid.
+      </div>
+    </div>
   </label>
   <fieldset formGroupName="credentials">
     <legend>Credentials:</legend>
     <label>
       Email:&nbsp;
       <input type="email" formControlName="email" />
+      <div
+        *ngIf="
+          userForm.get('credentials.email')?.errors &&
+          !userForm.get('credentials.email')?.pristine
+        "
+        class="error-msg"
+      >
+        <div
+          [hidden]="!userForm.get('credentials.email')?.errors?.['required']"
+        >
+          email is required.
+        </div>
+
+        <div [hidden]="!userForm.get('credentials.email')?.invalid">
+          email is invalid:
+          {{ userForm.get("credentials.email")?.errors?.['email'].rules }}
+        </div>
+      </div>
     </label>
     <label>
       Password:&nbsp;
       <input type="text" formControlName="password" />
+      <div
+        *ngIf="
+          userForm.get('credentials.password')?.errors &&
+          !userForm.get('credentials.password')?.pristine
+        "
+        class="error-msg"
+      >
+        <div
+          [hidden]="!userForm.get('credentials.password')?.errors?.['required']"
+        >
+          password is required.
+        </div>
+
+        <div [hidden]="!userForm.get('credentials.password')?.invalid">
+          password is invalid:
+          {{ userForm.get("credentials.password")?.errors?.['password'].rules }}
+        </div>
+      </div>
     </label>
   </fieldset>
   <fieldset formGroupName="address">
