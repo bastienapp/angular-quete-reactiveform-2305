@@ -1,0 +1,34 @@
+<div class="form">
+  <label>
+    Username:&nbsp;
+    <input type="text" [formControl]="username" />
+  </label>
+  <label>
+    Email:&nbsp;
+    <input type="email" [formControl]="email" />
+  </label>
+  <label>
+    Password:&nbsp;
+    <input type="text" [formControl]="password" />
+  </label>
+  <fieldset>
+    <legend>Address:</legend>
+    <label>
+      Street:&nbsp;
+      <input type="text" [formControl]="street" />
+    </label>
+    <label>
+      Postal Code:&nbsp;
+      <input type="text" [formControl]="postalCode" />
+    </label>
+    <label>
+      City:&nbsp;
+      <input type="text" [formControl]="city" />
+    </label>
+  </fieldset>
+  <button type="button" (click)="register()">Register</button>
+
+  <div>
+    <pre>{{ user | json }}</pre>
+  </div>
+</div>
