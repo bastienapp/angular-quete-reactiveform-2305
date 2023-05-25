@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+type Credentials = {
+  email: string
+  password: string
+}
 
 type Address = {
   street: string,
-  postalCode: string,
+  zipCode: string,
   city: string
 }
 
 type User = {
   username: string
-  email: string
-  password: string
+  credentials: Credentials,
   address: Address
 }
 
@@ -23,24 +27,24 @@ export class UserComponentComponent {
 
   user?: User
 
-  username = new FormControl('')
-  email = new FormControl('')
-  password = new FormControl('')
-  street = new FormControl('')
-  postalCode = new FormControl('')
-  city = new FormControl('')
+  userForm = this.fb.group({
 
-  register() {
-    this.user = {
-      username: this.username.value as string,
-      email: this.email.value as string,
-      password: this.password.value as string,
-      address: {
-        street: this.street.value as string,
-        postalCode: this.postalCode.value as string,
-        city: this.city.value as string,
-      },
-    }
-    console.log(this.user)
+    username: [''],
+    credentials: this.fb.group({
+      email: [''],
+      password: ['']
+    }),
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      zipCode: ['']
+    })
+
+  });
+
+  constructor(private fb: FormBuilder) { }
+
+  onSubmit() {
+    this.user = this.userForm.value as User
   }
 }

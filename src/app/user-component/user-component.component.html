@@ -1,34 +1,37 @@
-<div class="form">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <label>
     Username:&nbsp;
-    <input type="text" [formControl]="username" />
+    <input type="text" formControlName="username" />
   </label>
-  <label>
-    Email:&nbsp;
-    <input type="email" [formControl]="email" />
-  </label>
-  <label>
-    Password:&nbsp;
-    <input type="text" [formControl]="password" />
-  </label>
-  <fieldset>
+  <fieldset formGroupName="credentials">
+    <legend>Credentials:</legend>
+    <label>
+      Email:&nbsp;
+      <input type="email" formControlName="email" />
+    </label>
+    <label>
+      Password:&nbsp;
+      <input type="text" formControlName="password" />
+    </label>
+  </fieldset>
+  <fieldset formGroupName="address">
     <legend>Address:</legend>
     <label>
       Street:&nbsp;
-      <input type="text" [formControl]="street" />
+      <input type="text" formControlName="street" />
     </label>
     <label>
       Postal Code:&nbsp;
-      <input type="text" [formControl]="postalCode" />
+      <input type="text" formControlName="zipCode" />
     </label>
     <label>
       City:&nbsp;
-      <input type="text" [formControl]="city" />
+      <input type="text" formControlName="city" />
     </label>
   </fieldset>
-  <button type="button" (click)="register()">Register</button>
+  <button type="submit" [disabled]="!userForm.valid">Register</button>
+</form>
 
-  <div>
-    <pre>{{ user | json }}</pre>
-  </div>
+<div>
+  <pre>{{ user | json }}</pre>
 </div>
