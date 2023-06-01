@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponentComponent } from './user-component/user-component.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InputComponentComponent } from './input-component/input-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponentComponent
+    UserComponentComponent,
+    InputComponentComponent
   ],
   imports: [
     BrowserModule,

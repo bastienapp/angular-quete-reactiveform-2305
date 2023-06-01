@@ -1,5 +1,11 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <p>{{ userForm.controls["username"].errors | json }}</p>
+  <app-input-component
+    title="Component input"
+    name="input-component"
+    type="text"
+    [parentGroup]="userForm"
+  ></app-input-component>
   <label>
     Username:&nbsp;
     <input type="text" formControlName="username" />
@@ -87,7 +93,7 @@
       <input type="text" formControlName="city" />
     </label>
   </fieldset>
-  <button type="submit" [disabled]="!userForm.valid">Register</button>
+  <button type="submit">Register</button>
 </form>
 
 <div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidator } from '../password-validator';
 import { emailValidator } from '../email-validator';
 import { HttpClient } from '@angular/common/http';
@@ -45,7 +45,6 @@ export class UserComponentComponent implements OnInit {
   user?: User
 
   userForm = this.formBuilder.group({
-
     username: ['', {
       validators: [Validators.required, Validators.minLength(4)],
       asyncValidators: [usernameAsyncValidator(this.httpClient)]
@@ -92,5 +91,10 @@ export class UserComponentComponent implements OnInit {
 
   onSubmit() {
     this.user = this.userForm.value as User
+  }
+
+  onChange(form: FormGroup) {
+    // reset the form value to the newly emitted form group value.
+    this.userForm = form;
   }
 }
