@@ -92,9 +92,4 @@ export class UserComponentComponent implements OnInit {
   onSubmit() {
     this.user = this.userForm.value as User
   }
-
-  onChange(form: FormGroup) {
-    // reset the form value to the newly emitted form group value.
-    this.userForm = form;
-  }
 }
